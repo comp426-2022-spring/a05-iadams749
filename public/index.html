@@ -24,6 +24,7 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
+
   </head>
   <body>
     <nav>
@@ -31,19 +32,56 @@
       <button id="singlenav">Flip one coin</button>
       <button id="multinav">Flip multiple coins</button>
       <button id="guessnav">Guess the result</button>
+
     </nav>
     <div id="home">
-      
+      <p>HOME BASE</p>
     </div>    
     <div id="single" class="hidden">
-      
+      <p>SINGLE</p>
     </div>
     <div id="multi" class="hidden">
-      
+      <p>MULTI</p>
     </div>
     <div id="guess" class="hidden">
-      
+      <p>GUESS</p>
     </div>
-	<script src="main.js"></script>
+
+    <script>
+
+      function setActive(id){
+        names = ["home","single","multi","guess"]
+
+        for (const n of names){
+          document.getElementById(n).classList.add("hidden")
+        }
+
+        document.getElementById(id).classList.remove("hidden")
+      }
+
+      const homeButton = document.getElementById("homenav")
+      homeButton.addEventListener("click", () => {
+        setActive("home")
+      })
+
+      const singleButton = document.getElementById("singlenav")
+      singleButton.addEventListener("click", () => {
+        setActive("single")
+      })
+
+      const multiButton = document.getElementById("multinav")
+      multiButton.addEventListener("click", () => {
+        setActive("multi")
+      })
+
+      const guessButton = document.getElementById("guessnav")
+      guessButton.addEventListener("click", () => {
+        setActive("guess")
+      })
+
+
+    </script>
+
+	  <script src="main.js"></script>
   </body>
 </html>
