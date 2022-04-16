@@ -34,17 +34,94 @@
       <button id="guessnav">Guess the result</button>
 
     </nav>
+    
     <div id="home">
-      <p>HOME BASE</p>
+      <p>This site has three different games. Flip one coin will flip a coin and display the output: heads or tails. Flip multiple coins will ask for a certain number of coin flips and then flip that many coins and show you the results. Guess the result will ask you to pick heads or tails and then tell you id you were right or wrong.</p>
     </div>    
+    
     <div id="single" class="hidden">
-      <p>SINGLE</p>
+      <div class="space">
+      </div>
+      <button id="flipacoin" style="padding: 30px 10px;">Flip a coin!</button>
+
+      <p id="singleResult">Result: </p>
+
+      <script>
+        document.getElementById("flipacoin").addEventListener("click", () => {
+          fetch('http://localhost:5555/app/flip/one/', {mode: 'cors'})
+          .then(function(response){
+            return response.json()
+          })
+          .then(function(json){
+            document.getElementById("singleResult").innerHTML = "Result: "+json["result"]
+          })
+        })
+      </script>
     </div>
+
+
     <div id="multi" class="hidden">
-      <p>MULTI</p>
+      <div class="space">
+      </div>
+      <p>Please enter how many times you would like to flip the coin</p>
+      <input id="multiinput" type="number">
+
+      <p id="multiresult">Results: </p>
+      <p id="multisummary">Summary: </p>
+
+      <script>
+        document.getElementById("multiinput").addEventListener("change", () => {
+          urlString = 'http://localhost:5555/app/flip/coins/'+document.getElementById("multiinput").value.toString()
+
+          fetch(urlString, {mode: 'cors'})
+          .then(function(response){
+            return response.json()
+          })
+          .then(function(json){
+            document.getElementById("multiresult").innerHTML = "Results: "+json["raw"]
+            document.getElementById("multisummary").innerHTML = "Summary "+JSON.stringify(json["summary"])
+          })
+        })
+      </script>
     </div>
+
+
     <div id="guess" class="hidden">
-      <p>GUESS</p>
+      <div class="space">
+      </div>
+
+      <button id="guesshead" style="padding: 30px 10px;">Guess Heads</button>
+      <button id="guesstails" style="padding: 30px 20px;">Guess Tails</button>
+      
+      <p id="playerguess">Your Guess:</p>
+      <p id="coinresult">Coin Flip Result: </p>
+      <p id="victorymessage"></p>
+
+      <script>
+        document.getElementById("guesshead").addEventListener("click", () => {
+          fetch('http://localhost:5555/app/flip/call/heads')
+          .then(function(response){
+            return response.json()
+          })
+          .then(function(json){
+            document.getElementById("playerguess").innerHTML = "Your Guess: "+json["call"]
+            document.getElementById("coinresult").innerHTML = "Coin Flip Result: "+json["flip"]
+            document.getElementById("victorymessage").innerHTML = "Game Outcome: "+json["result"]
+          })
+        })
+
+        document.getElementById("guesstails").addEventListener("click", () => {
+          fetch('http://localhost:5555/app/flip/call/tails')
+          .then(function(response){
+            return response.json()
+          })
+          .then(function(json){
+            document.getElementById("playerguess").innerHTML = "Your Guess: "+json["call"]
+            document.getElementById("coinresult").innerHTML = "Coin Flip Result: "+json["flip"]
+            document.getElementById("victorymessage").innerHTML = "Game Outcome: "+json["result"]
+          })
+        })
+      </script>
     </div>
 
     <script>
