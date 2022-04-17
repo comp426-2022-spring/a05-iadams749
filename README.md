@@ -1,18 +1,3 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7610387&assignment_repo_type=AssignmentRepo)
-# a05 Human Interface
-
-In this assignment, you will build an HTML human interface for your API. You will also document your API endpoints and consider package structure.
-
-## DO NOT CLONE THIS REPOSITORY DIRECTLY
-
-Use the GitHub classroom link instead: https://classroom.github.com/a/PUVGxeMe
-
-If you clone this repo directly, it will not be added to the organization as an individual repo associated with your account and you will not be able to push to it.
-
-## Instructions
-
-Full instructions for this assignment are available at: https://comp426.johndmart.in/a/05/
-
 <!-- DELETE EVERYTHING ABOVE THIS LINE -->
 
 # Coinserver Description
@@ -79,64 +64,60 @@ Connection: keep-alive
 Keep-Alive: timeout=5
 ```
 
-### /app/flip/ (GET)
+### /app/flip/one (GET)
 
 #### Request cURL
 
 ```
-
+curl http://localhost:5000/app/flip/one
 ```
 
 #### Response body
 
 ```
-
+{"result":"heads"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 18
+ETag: W/"12-LUQPHBtW+sQqHvQ4HD7ph4ZTpW4"
+Date: Sun, 17 Apr 2022 01:13:27 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
-### /app/flips/:number/ (GET)
+### /app/flip/coins/:number/ (GET)
 
 #### Request cURL
 
 ```
-
+curl http://localhost:5000/app/flip/coins/3
 ```
 
 #### Response body
 
 ```
-
+{"raw":["heads","heads","tails"],"summary":{"heads":2,"tails":1}}
 ```
 
 #### Response headers
 
 ```
-
-```
-
-### /app/flip/coin/ (GET)
-
-#### Request cURL
-
-```
-
-```
-
-#### Response body
-
-```
-
-```
-
-#### Response headers
-
-```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 55
+ETag: W/"37-nUcPqHO9FfbI8DRbRY5p3lRI1i4"
+Date: Sun, 17 Apr 2022 01:17:07 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flip/call/:guess/ (GET)
@@ -144,19 +125,27 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost:5000/app/flip/call/heads/
 ```
 
 #### Response body
 
 ```
-
+{"call":"heads","flip":"tails","result":"lose"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 47
+ETag: W/"2f-7jHpBxeRlMwmX45a5nEiITPVllI"
+Date: Sun, 17 Apr 2022 01:19:27 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 ### /app/flip/call/ (POST)
@@ -218,39 +207,56 @@ Keep-Alive: timeout=5
 #### Request cURL
 
 ```
-
+curl http://localhost5555/app/log/access
 ```
 
 #### Response body
 
 ```
-
+{"id":0,"time":1650068280212,"remoteaddr":"::1","remoteuser":"undefined","method":"GET","url":"/app/flip/one","protocol":"http","httpversion":"1.1","secure":"false","status":"200","referer":"undefined","useragent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36"},{"id":1,"time":1650068281330,"remoteaddr":"::1","remoteuser":"undefined","method":"GET","url":"/app/flip/one","protocol":"http","httpversion":"1.1","secure":"false","status":"200","referer":"undefined","useragent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36"}
 ```
 
 #### Response headers
 
 ```
-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Type: application/json; charset=utf-8
+Content-Length: 28586
+ETag: W/"6faa-VHgcU83OpHX6+brFLgYOKwxwMow"
+Date: Sun, 17 Apr 2022 01:20:56 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
-### /app/log/access/ (GET)
+### /app/error/ (GET)
 
 #### Request cURL
 
 ```
-
+curl http://localhost:5000/app/error/
 ```
 
 #### Response body
 
 ```
-
+HTTP/1.1 500 Internal Server Error
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Content-Security-Policy: default-src 'none'
+X-Content-Type-Options: nosniff
+Content-Type: text/html; charset=utf-8
+Content-Length: 1275
+Date: Sun, 17 Apr 2022 01:22:19 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
 ```
 
 #### Response headers
 
 ```
-
+Error: Error test successful.<br> &nbsp; &nbsp;at /Users/iwa332/VSCode/a05-iadams749/index.js:108:13<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/iwa332/VSCode/a05-iadams749/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at next (/Users/iwa332/VSCode/a05-iadams749/node_modules/express/lib/router/route.js:137:13)<br> &nbsp; &nbsp;at Route.dispatch (/Users/iwa332/VSCode/a05-iadams749/node_modules/express/lib/router/route.js:112:3)<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/iwa332/VSCode/a05-iadams749/node_modules/express/lib/router/layer.js:95:5)<br> &nbsp; &nbsp;at /Users/iwa332/VSCode/a05-iadams749/node_modules/express/lib/router/index.js:281:22<br> &nbsp; &nbsp;at Function.process_params (/Users/iwa332/VSCode/a05-iadams749/node_modules/express/lib/router/index.js:341:12)<br> &nbsp; &nbsp;at next (/Users/iwa332/VSCode/a05-iadams749/node_modules/express/lib/router/index.js:275:10)<br> &nbsp; &nbsp;at /Users/iwa332/VSCode/a05-iadams749/index.js:94:5<br> &nbsp; &nbsp;at Layer.handle [as handle_request] (/Users/iwa332/VSCode/a05-iadams749/node_modules/express/lib/router/layer.js:95:5)
 ```
 
 ### /app/log/error/ (GET)
