@@ -46,6 +46,8 @@
 
       <p id="singleResult">Result: </p>
 
+      <img src="assets/img/coin.png" id="quarter">
+
       <script>
         document.getElementById("flipacoin").addEventListener("click", () => {
           fetch('http://localhost:5555/app/flip/one/', {mode: 'cors'})
@@ -54,6 +56,7 @@
           })
           .then(function(json){
             document.getElementById("singleResult").innerHTML = "Result: "+json["result"]
+            document.getElementById("quarter").src = "assets/img/"+json["result"]+".png"
           })
         })
       </script>
